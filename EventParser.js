@@ -1,37 +1,6 @@
-const csvParse = require('csv-parse/lib/sync');
-const Readlines = require('n-readlines');
+const BaseEventParser = require('choice-model-client-utils/EventParser');
 
-class EventParser {
-  constructor(filename, headers = true) {
-    this.reader = new Readlines(filename);
-
-    if (headers === true) {
-      const headerLine = this.getNextLine();
-      this.headers = headerLine.split(',');
-    } else {
-      this.headers = headers;
-    }
-  }
-
-  getNextLine() {
-    const nextLine = this.reader.next();
-    if (nextLine) {
-      return nextLine.toString('ascii');
-    }
-    return false;
-  }
-
-  getNextEvent() {
-    const nextLine = this.getNextLine();
-    if (nextLine === false) {
-      return false;
-    }
-    return this.parseEvent(csvParse(nextLine, {
-      auto_parse: true,
-      columns: this.headers
-    })[0]);
-  }
-
+class EventParser extends BaseEventParser {
   parseEvent(eventData) {
     const ctx_destination = `d_${eventData.srch_destination_id}`;
     const ctx_destination_type = `d_t_${eventData.srch_destination_type_id}`;

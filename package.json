@@ -9,9 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "csv-parse": "^1.2.0",
-    "n-readlines": "^0.2.7",
-    "request": "^2.81.0",
-    "request-promise": "^4.2.0"
+    "choice-model-client-utils": "https://github.com/chetanism/choice-model-client-utils"
   }
 }

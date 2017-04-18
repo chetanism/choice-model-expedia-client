@@ -1,5 +1,5 @@
 const EventParser = require('./EventParser');
-const RequestManager = require('./RequestManager');
+const RequestManager = require('choice-model-client-utils/RequestManager');
 
 const filename = process.argv[2];
 if (filename === undefined) {
